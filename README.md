@@ -59,7 +59,7 @@ To run the `DatasetComparator`, follow these steps:
     python -m src.run_comparison
     ```
 
-4. The comparator returns the comparison results in the form of logs:
+4. The comparator provides the comparison results in log form:
    <img src="images/logs.png" alt="Logs" width="800"/>
 
     Additionally, the comparator returns the result as a dictionary, which can be further processed - for example, by saving it as a file or using exported dataframes for further analysis
@@ -72,3 +72,4 @@ Unit tests can be run with the following commands:
     ```bash
     source venv/Scripts/activate
     pytest tests/test_comparator.py
+    ```
