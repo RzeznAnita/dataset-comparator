@@ -41,13 +41,13 @@ This repository provides the `DatasetComparator` class, designed for comparing t
 To run the `DatasetComparator`, follow these steps:
 
 1. Open the file `src/run_comparison.py`.
-2. Initialize the datasets.
-   The DatasetComparator requires two PySpark DataFrames:
-   - expected_df – the reference dataset to compare against
-   - actual_df – the dataset to be validated
+2. The Dataset Comparator requires two PySpark DataFrames:
+   - expected_df - the reference dataset to compare against,
+   - actual_df - the dataset to be validated.
 
-   They can be initialized in different ways, for example, by reading from CSV, JSON, or Parquet files, or by querying databases:
-   
+   They can be initialized in different ways, for example, by reading from CSV, Parquet files, or by querying databases.
+   Initialize the datasets, for example:
+
    ```python
    expected_dataset = spark.read.csv("data/expected.csv", header=True, inferSchema=True)
    actual_dataset = spark.read.csv("data/actual.csv", header=True, inferSchema=True)
@@ -62,12 +62,13 @@ To run the `DatasetComparator`, follow these steps:
 4. The comparator returns the comparison results in the form of logs:
    <img src="images/logs.png" alt="Logs" width="800"/>
 
-    Additionally, the comparator returns the result as a dictionary, which can be further processed - for example, saved to a file or exported as a DataFrame for further analysis.
+    Additionally, the comparator returns the result as a dictionary, which can be further processed - for example, by saving it as a file or using exported dataframes for further analysis
 
 
 ## Run Tests
 
-Unit tests can be run with:
+Unit tests can be run with the following commands:
 
 ```bash
+source venv/Scripts/activate
 pytest tests/test_comparator.py
