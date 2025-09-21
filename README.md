@@ -1,20 +1,20 @@
 # Dataset Comparator
 
-This repository provides the `DatasetComparator` class, designed for comparing two PySpark datasets (DataFrames). The comparator helps ensure data consistency during the migration from an on-premises data warehouse to a cloud-based environment by performing checks for schema differences, row count discrepancies, and value mismatches.
+This repository provides the `DatasetComparator` class, designed for comparing two PySpark DataFrames. The comparator helps ensure data consistency during the migration from an on-premises data warehouse to a cloud-based environment by performing checks for schema differences, row count discrepancies, and value mismatches.
 
 
 ## Features
 
-- **Schema comparison:** Identify columns only in one dataset or with mismatched types.
-- **Row count comparison:** Compare the number of records between datasets.
+- **Schema comparison:** Identify differences in the number and types of columns.
+- **Row count comparison:** Compare the number of rows between datasets.
 - **Value comparison:** Detect rows present in one dataset but missing in the other.
 - **Flexible input:** Datasets can come from CSV files, database tables, ...
 
 
 ## Project Structure
 
-- **src/** – Contains the Dataset Comparator source code.
-- **test/** – Contains unit tests.
+- **src/** – Contains the `DatasetComparator` source code.
+- **test/** – Contains Unit Tests.
 
 
 ## Setup
@@ -69,6 +69,6 @@ To run the `DatasetComparator`, follow these steps:
 
 Unit tests can be run with the following commands:
 
-```bash
-source venv/Scripts/activate
-pytest tests/test_comparator.py
+    ```bash
+    source venv/Scripts/activate
+    pytest tests/test_comparator.py
