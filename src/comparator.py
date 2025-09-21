@@ -83,7 +83,7 @@ class DatasetComparator:
         for desc, result in results.items():
             if isinstance(result, DataFrame):
                 logger.info(f"{desc}:")
-                result.show(False, 10)
+                result.show(10, False)
             else:
                 logger.info(f"{desc}: {result}")
 
