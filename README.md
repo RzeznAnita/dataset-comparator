@@ -60,6 +60,7 @@ To run the `DatasetComparator`, follow these steps:
     ```
 
 4. The comparator provides the comparison results in log form:
+
    <img src="images/logs.png" alt="Logs" width="800"/>
 
     Additionally, the comparator returns the result as a dictionary, which can be further processed - for example, by saving it as a file or using exported dataframes for further analysis
@@ -69,7 +70,6 @@ To run the `DatasetComparator`, follow these steps:
 
 Unit tests can be run with the following commands:
 
-    ```bash
+```bash
     source venv/Scripts/activate
     pytest tests/test_comparator.py
-    ```
