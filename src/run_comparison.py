@@ -24,11 +24,9 @@ def run():
     expected_dataset = None
     actual_dataset = None
 
-
-
-    comparator = DatasetComparator(expected_df=expected_dataset, actual_df=actual_dataset)
     # The comparator returns a result as a dictionary, which can be further processed.
     # For example, saved to a file or exported as a DataFrame for further analysis.
+    comparator = DatasetComparator(expected_df=expected_dataset, actual_df=actual_dataset)
     result = comparator.run_checks()
 
 

@@ -37,10 +37,10 @@ def test_init_with_valid_dfs(sample_datasets):
 def test_init_with_invalid_inputs(sample_datasets):
     """Test __init__()."""
     expected_df, actual_df = sample_datasets
-    with pytest.raises(Exception, match="The expected_df is not provided as a PySpark DataFrame"):
+    with pytest.raises(TypeError, match="The expected_df is not provided as a PySpark DataFrame"):
         DatasetComparator("Incorrect_DataFrame", actual_df)
 
-    with pytest.raises(Exception, match="The actual_df is not provided as a PySpark DataFrame"):
+    with pytest.raises(TypeError, match="The actual_df is not provided as a PySpark DataFrame"):
         DatasetComparator(expected_df, "Incorrect_DataFrame")
 
 

@@ -1,6 +1,8 @@
-from pyspark.sql import DataFrame
-import pyspark.sql.functions as f
 from functools import reduce
+
+import pyspark.sql.functions as f
+from pyspark.sql import DataFrame
+
 from src.logger_setup import logger
 
 
@@ -15,10 +17,10 @@ class DatasetComparator:
             actual_df: The actual dataset to be compared.
         """
         if not isinstance(expected_df, DataFrame):
-            raise Exception("The expected_df is not provided as a PySpark DataFrame")
+            raise TypeError("expected_df must be a PySpark DataFrame")
 
         if not isinstance(actual_df, DataFrame):
-            raise Exception("The actual_df is not provided as a PySpark DataFrame")
+            raise TypeError("actual_df must be a PySpark DataFrame")
 
         self.expected_df = expected_df
         self.actual_df = actual_df
@@ -34,7 +36,8 @@ class DatasetComparator:
         cols_only_in_actual = schema_actual.keys() - schema_expected.keys()
 
         type_mismatches = {col: (schema_expected[col], schema_actual[col])
-                           for col in common_cols if col in schema_actual and schema_expected[col] != schema_actual[col]}
+                           for col in common_cols 
+                           if schema_expected[col] != schema_actual[col]}
 
         return {"Columns available only in the expected dataset": cols_only_in_expected or None,
                 "Columns available only in the actual dataset": cols_only_in_actual or None,
@@ -45,7 +48,7 @@ class DatasetComparator:
         count_expected = self.expected_df.count()
         count_actual = self.actual_df.count()
         diff = abs(count_expected - count_actual)
-        pct = round((diff / count_expected) * 100, 2)
+        pct = round((diff / count_expected) * 100, 2) if count_expected else None
 
         return {"Number of rows in the expected dataset": count_expected,
                 "Number of rows in the actual dataset": count_actual,
@@ -80,17 +83,19 @@ class DatasetComparator:
         for desc, result in results.items():
             if isinstance(result, DataFrame):
                 logger.info(f"{desc}:")
-                result.show()
+                result.show(False, 10)
             else:
                 logger.info(f"{desc}: {result}")
 
     def run_checks(self) -> dict:
         """Run checks."""
         logger.info("Start comparison.")
+        # Run checks
         schema_check = self.compare_schemas()
         row_counts_check = self.compare_row_counts()
         values_check = self.compare_values_in_columns()
 
+        # Log results
         self.report_results(schema_check)
         self.report_results(row_counts_check)
         self.report_results(values_check)
